@@ -12,6 +12,7 @@
     %22short_name%22:%22MotoRacer%22,
     %22start_url%22:%22/%22,
     %22display%22:%22standalone%22,
+    %22orientation%22:%22landscape%22,
     %22theme_color%22:%22%23ff4400%22,
     %22background_color%22:%22%23000000%22,
     %22icons%22:[
@@ -23,96 +24,90 @@
     body{overflow:hidden;background:#000;font-family:'Segoe UI',system-ui,sans-serif;touch-action:none}
     canvas{display:block;position:fixed;top:0;left:0;width:100%;height:100%}
     
-    /* HUD Móvil - Compacto */
+    /* HUD Móvil Horizontal */
     #hud{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10}
     
     /* Velocímetro */
-    #speed-panel{position:fixed;bottom:130px;left:10px;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);border-radius:16px;padding:5px 12px;border-left:3px solid #ff4400}
-    #speed-val{font-size:36px;color:#ff4400;font-weight:900;font-family:monospace;line-height:1}
-    #speed-unit{font-size:9px;color:#fff;opacity:.6}
+    #speed-panel{position:fixed;bottom:15px;left:10px;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);border-radius:12px;padding:4px 10px;border-left:3px solid #ff4400}
+    #speed-val{font-size:32px;color:#ff4400;font-weight:900;font-family:monospace;line-height:1}
+    #speed-unit{font-size:8px;color:#fff;opacity:.6}
     
     /* Vidas */
-    #lives-panel{position:fixed;top:10px;left:10px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-radius:20px;padding:5px 12px;display:flex;gap:4px;font-size:18px}
+    #lives-panel{position:fixed;top:8px;left:8px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-radius:15px;padding:4px 10px;display:flex;gap:3px;font-size:16px}
     .heart{color:#ff3366}
     .heart.lost{opacity:0.2}
     
-    /* Monedas */
-    #coin-panel{position:fixed;top:10px;right:10px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-radius:20px;padding:5px 12px;display:flex;align-items:center;gap:4px}
-    #coin-count{color:gold;font-size:16px;font-weight:bold}
-    #score-panel{position:fixed;top:50px;right:10px;background:rgba(0,0,0,.4);border-radius:12px;padding:3px 8px;font-size:10px;color:#fff}
-    #weather-icon{position:fixed;top:10px;right:90px;font-size:20px;background:rgba(0,0,0,.4);border-radius:50%;padding:4px 7px}
+    /* Monedas y Score */
+    #coin-panel{position:fixed;top:8px;right:8px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-radius:15px;padding:4px 10px;display:flex;align-items:center;gap:4px}
+    #coin-count{color:gold;font-size:14px;font-weight:bold}
+    #score-panel{position:fixed;top:45px;right:8px;background:rgba(0,0,0,.4);border-radius:10px;padding:2px 8px;font-size:9px;color:#fff}
+    #weather-icon{position:fixed;top:8px;right:85px;font-size:18px;background:rgba(0,0,0,.4);border-radius:50%;padding:3px 6px}
     
     /* Combo */
-    #combo-pop{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);font-size:28px;font-weight:900;color:#ff8800;text-shadow:0 0 15px rgba(255,136,0,.8);pointer-events:none;opacity:0;transition:opacity .2s;z-index:15;white-space:nowrap}
+    #combo-pop{position:fixed;top:35%;left:50%;transform:translate(-50%,-50%);font-size:24px;font-weight:900;color:#ff8800;text-shadow:0 0 15px rgba(255,136,0,.8);pointer-events:none;opacity:0;transition:opacity .2s;z-index:15;white-space:nowrap}
     
     /* CONTROLES MÓVIL - PEDALES REALES */
-    #controls-container{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:flex-end;gap:8px;padding:10px 12px 20px;z-index:20;pointer-events:auto;background:linear-gradient(to top,rgba(0,0,0,.6),transparent)}
+    #controls-container{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:flex-end;gap:6px;padding:8px 10px 15px;z-index:20;pointer-events:auto;background:linear-gradient(to top,rgba(0,0,0,.5),transparent)}
     
-    /* Volante simplificado para móvil */
-    .steering-wheel{width:100px;height:100px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#3a3a3a,#1a1a1a);border:2px solid #ff4400;box-shadow:0 5px 15px rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative}
-    .steering-wheel:active{transform:scale(0.97)}
-    .wheel-icon{font-size:32px;color:#ff4400}
-    .wheel-label{font-size:8px;color:#fff;opacity:.7}
+    /* Volante */
+    .steering-wheel{width:85px;height:85px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#3a3a3a,#1a1a1a);border:2px solid #ff4400;box-shadow:0 4px 12px rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative}
+    .steering-wheel:active{transform:scale(0.96)}
+    .wheel-icon{font-size:28px;color:#ff4400}
+    .wheel-label{font-size:7px;color:#fff;opacity:.7}
     .wheel-arrows{position:absolute;width:100%;display:flex;justify-content:space-between;padding:0 8px;top:50%;transform:translateY(-50%);pointer-events:none}
-    .wheel-arrows span{font-size:16px;color:#ff4400;opacity:.6}
+    .wheel-arrows span{font-size:14px;color:#ff4400;opacity:.6}
     
-    /* Pedales reales */
-    .pedals-container{display:flex;gap:8px}
-    .real-pedal{width:70px;height:85px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .05s linear;box-shadow:0 4px 12px rgba(0,0,0,.5);position:relative}
-    .real-pedal:active{transform:scale(0.94)}
-    
-    /* Pedal Acelerador */
+    /* Pedales */
+    .pedals-container{display:flex;gap:6px}
+    .real-pedal{width:60px;height:75px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .05s linear;box-shadow:0 4px 10px rgba(0,0,0,.5);position:relative}
+    .real-pedal:active{transform:scale(0.93)}
     .gas-pedal-real{background:linear-gradient(145deg,#c0c0c0,#a0a0a0);border-bottom:3px solid #00aa44}
-    .gas-pedal-real .pedal-symbol{font-size:28px;color:#00aa44}
-    
-    /* Pedal Freno */
+    .gas-pedal-real .pedal-symbol{font-size:24px;color:#00aa44}
     .brake-pedal-real{background:linear-gradient(145deg,#888,#666);border-bottom:3px solid #cc0000}
-    .brake-pedal-real .pedal-symbol{font-size:28px;color:#cc0000}
+    .brake-pedal-real .pedal-symbol{font-size:24px;color:#cc0000}
+    .pedal-label-real{font-size:7px;font-weight:bold;color:#333;margin-top:3px}
     
-    .pedal-label-real{font-size:8px;font-weight:bold;color:#333;margin-top:4px}
-    
-    /* Botón Nitro */
-    .nitro-btn-real{width:65px;height:65px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#0088dd,#0044aa);box-shadow:0 0 10px #0088ff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
-    .nitro-btn-real:active{transform:scale(0.93);background:#00aaff}
-    .nitro-icon{font-size:28px}
-    .nitro-label{font-size:8px;color:#fff;margin-top:2px}
+    /* Nitro */
+    .nitro-btn-real{width:55px;height:55px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#0088dd,#0044aa);box-shadow:0 0 8px #0088ff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
+    .nitro-btn-real:active{transform:scale(0.92);background:#00aaff}
+    .nitro-icon{font-size:24px}
+    .nitro-label{font-size:7px;color:#fff;margin-top:2px}
     
     /* Pausa */
-    .pause-btn{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:11px;padding:4px 20px;border-radius:20px;cursor:pointer;z-index:30;pointer-events:auto;bottom:135px}
+    .pause-btn{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:10px;padding:3px 18px;border-radius:18px;cursor:pointer;z-index:30;pointer-events:auto}
     
     /* Menús */
     .menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(145deg,#050510,#0a0a2e,#000);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:100;transition:all .4s}
     .menu-overlay.hidden{opacity:0;pointer-events:none}
-    .menu-title{font-size:36px;font-weight:900;color:#ff4400;text-shadow:0 0 20px rgba(255,68,0,.8);margin-bottom:5px}
-    .menu-logo{font-size:60px;margin-bottom:5px;animation:float 2s ease-in-out infinite}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-    .menu-btn{background:linear-gradient(45deg,#ff4400,#ff8800);border:none;color:#fff;font-size:16px;padding:10px 30px;border-radius:40px;margin:5px;cursor:pointer;font-weight:bold;width:200px}
+    .menu-title{font-size:32px;font-weight:900;color:#ff4400;text-shadow:0 0 20px rgba(255,68,0,.8);margin-bottom:5px}
+    .menu-logo{font-size:55px;margin-bottom:5px;animation:float 2s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    .menu-btn{background:linear-gradient(45deg,#ff4400,#ff8800);border:none;color:#fff;font-size:14px;padding:8px 25px;border-radius:35px;margin:4px;cursor:pointer;font-weight:bold;width:180px}
     .menu-btn:active{transform:scale(0.96)}
     .menu-btn.secondary{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2)}
     
-    .settings-panel{background:rgba(0,0,0,.8);backdrop-filter:blur(20px);border-radius:20px;padding:15px;margin:15px;width:260px}
-    .settings-row{display:flex;justify-content:space-between;align-items:center;margin:10px 0;color:#fff;font-size:13px}
-    .toggle-switch{width:44px;height:24px;background:#333;border-radius:12px;cursor:pointer;position:relative}
+    .settings-panel{background:rgba(0,0,0,.8);backdrop-filter:blur(20px);border-radius:18px;padding:12px;margin:12px;width:240px}
+    .settings-row{display:flex;justify-content:space-between;align-items:center;margin:8px 0;color:#fff;font-size:12px}
+    .toggle-switch{width:40px;height:22px;background:#333;border-radius:11px;cursor:pointer;position:relative}
     .toggle-switch.active{background:#ff4400}
-    .toggle-switch::after{content:'';position:absolute;width:20px;height:20px;background:#fff;border-radius:10px;top:2px;left:2px;transition:.2s}
-    .toggle-switch.active::after{left:22px}
+    .toggle-switch::after{content:'';position:absolute;width:18px;height:18px;background:#fff;border-radius:9px;top:2px;left:2px;transition:.2s}
+    .toggle-switch.active::after{left:20px}
     
     #gameover-panel,#pause-panel{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);backdrop-filter:blur(10px);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:90;opacity:0;pointer-events:none;transition:opacity .3s}
     #gameover-panel.visible,#pause-panel.visible{opacity:1;pointer-events:auto}
     
     .damage-flash{animation:damageFlash .2s 2}
     @keyframes damageFlash{0%,100%{background:transparent}50%{background:rgba(255,0,0,.4)}}
-    .coin-pop{position:fixed;animation:coinFloat 1s ease-out forwards;pointer-events:none;z-index:200;font-size:18px;font-weight:bold}
-    @keyframes coinFloat{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-70px)}}
+    .coin-pop{position:fixed;animation:coinFloat 1s ease-out forwards;pointer-events:none;z-index:200;font-size:16px;font-weight:bold}
+    @keyframes coinFloat{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-60px)}}
     
-    @media(max-width:500px){
-      .steering-wheel{width:80px;height:80px}
-      .wheel-icon{font-size:26px}
-      .real-pedal{width:60px;height:75px}
-      .real-pedal .pedal-symbol{font-size:24px}
-      .nitro-btn-real{width:55px;height:55px}
-      .nitro-icon{font-size:24px}
-      .speed-val{font-size:28px}
+    @media(max-width:600px) and (orientation:landscape){
+      .steering-wheel{width:75px;height:75px}
+      .real-pedal{width:55px;height:68px}
+      .real-pedal .pedal-symbol{font-size:22px}
+      .nitro-btn-real{width:50px;height:50px}
+      .nitro-icon{font-size:22px}
+      #speed-val{font-size:28px}
     }
   </style>
 </head>
@@ -121,25 +116,25 @@
 <div id="main-menu" class="menu-overlay">
   <div class="menu-logo">🏍️</div>
   <div class="menu-title">MOTO RACER X</div>
-  <div style="color:#fff;opacity:.7;font-size:11px;margin-bottom:20px">3 Carriles | Controles Reales</div>
+  <div style="color:#fff;opacity:.7;font-size:10px;margin-bottom:15px">3 Carriles | Controles Reales</div>
   <button class="menu-btn" id="start-btn">🚀 INICIAR</button>
   <button class="menu-btn secondary" id="settings-btn">⚙️ AJUSTES</button>
   <button class="menu-btn secondary" id="stats-btn">🏆 ESTADÍSTICAS</button>
 </div>
 
 <div id="settings-menu" class="menu-overlay hidden">
-  <div class="menu-title" style="font-size:26px">⚙️ AJUSTES</div>
+  <div class="menu-title" style="font-size:24px">⚙️ AJUSTES</div>
   <div class="settings-panel">
-    <div class="settings-row">🎮 Controles<div id="ctrl-toggle" class="toggle-switch active"></div></div>
+    <div class="settings-row">🎮 Controles táctiles<div id="ctrl-toggle" class="toggle-switch active"></div></div>
     <div class="settings-row">🌙 Modo noche<div id="night-toggle" class="toggle-switch"></div></div>
   </div>
   <button class="menu-btn secondary" id="settings-back">◀ VOLVER</button>
 </div>
 
 <div id="gameover-panel">
-  <div style="font-size:50px">💀</div>
-  <div style="font-size:28px;font-weight:900;color:#ff4400">GAME OVER</div>
-  <div style="margin:20px;text-align:center;color:#fff;line-height:1.6">
+  <div style="font-size:45px">💀</div>
+  <div style="font-size:26px;font-weight:900;color:#ff4400">GAME OVER</div>
+  <div style="margin:15px;text-align:center;color:#fff;line-height:1.5;font-size:12px">
     🏆 Puntaje: <span id="go-score">0</span><br>
     📍 Distancia: <span id="go-dist">0</span>m<br>
     💰 Monedas: <span id="go-coins">0</span><br>
@@ -150,8 +145,8 @@
 </div>
 
 <div id="pause-panel">
-  <div style="font-size:50px">⏸️</div>
-  <div style="font-size:28px;font-weight:900;color:#fff">PAUSA</div>
+  <div style="font-size:45px">⏸️</div>
+  <div style="font-size:26px;font-weight:900;color:#fff">PAUSA</div>
   <button class="menu-btn" id="resume-btn">▶️ CONTINUAR</button>
 </div>
 
@@ -197,35 +192,34 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
-// ========== CONFIGURACIÓN PARA MÓVIL - VELOCIDAD CONTROLADA ==========
+// ========== CONFIGURACIÓN MÓVIL - VELOCIDAD REDUCIDA ==========
 const CONFIG={
   roadWidth:9.0,
-  laneWidth:3.0,
   segLen:2.6,
-  maxSpeed:220,        // Velocidad máxima más baja para móvil
-  baseAccel:0.55,      // Aceleración más suave
-  nitroMult:1.9,       // Nitro más suave
-  nitroDrain:0.02,
-  nitroRegen:0.015,
-  turnBase:0.14,
-  aiSpeed:110,         // Autos más lentos
-  numCars:10,
-  numObstacles:8,
-  numCoins:25,
-  roadLeftLimit:-4.0,
-  roadRightLimit:4.0,
-  lanes:[-2.8, 0, 2.8]
+  maxSpeed:160,           // Velocidad máxima reducida para móvil
+  baseAccel:0.45,         // Aceleración suave
+  nitroMult:1.7,          // Nitro más suave
+  nitroDrain:0.018,
+  nitroRegen:0.018,
+  turnBase:0.12,          // Giro suave
+  aiSpeed:95,             // Autos más lentos
+  numCars:8,
+  numObstacles:6,
+  numCoins:20,
+  roadLeftLimit:-3.8,
+  roadRightLimit:3.8,
+  lanes:[-2.6, 0, 2.6]
 };
 
 let scene,camera,renderer,clock,bikeGroup,bikeBody,wheels=[],frontLight;
 let roadLines=[],cars=[],obstacles=[],coins=[],decorations=[];
 let rain,stars,ambLight,sunLight;
 let state={
-  running:false,paused:false,speed:60,nitro:0.8,bikeX:0,bikeXVel:0,
+  running:false,paused:false,speed:50,nitro:0.8,bikeX:0,bikeXVel:0,
   score:0,coins:0,lives:3,distance:0,maxSpeed:0,combo:1,
   weather:'clear',timeOfDay:0.6,drift:0,invincible:0
 };
-let keys={left:false,right:false,up:false,down:false,nitro:false};
+let keys={left:false,right:false,up:true,down:false,nitro:false}; // up=true para autoacelerar
 let settings={useButtons:true,nightMode:false};
 let exhaustParticles=[];
 let lastExhaust=0;
@@ -235,19 +229,19 @@ function initThree(){
   clock=new THREE.Clock();
   scene=new THREE.Scene();
   scene.background=new THREE.Color(0x0a1030);
-  scene.fog=new THREE.FogExp2(0x0a1030,0.01);
+  scene.fog=new THREE.FogExp2(0x0a1030,0.012);
   
-  camera=new THREE.PerspectiveCamera(65,innerWidth/innerHeight,0.1,500);
-  camera.position.set(0,2.4,5.0);
+  camera=new THREE.PerspectiveCamera(65,window.innerWidth/window.innerHeight,0.1,500);
+  camera.position.set(0,2.4,5.2);
   
   renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
-  renderer.setSize(innerWidth,innerHeight);
+  renderer.setSize(window.innerWidth,window.innerHeight);
   renderer.shadowMap.enabled=true;
   document.body.appendChild(renderer.domElement);
   
   ambLight=new THREE.AmbientLight(0x303060,0.7);
   scene.add(ambLight);
-  sunLight=new THREE.DirectionalLight(0xffcc88,1.5);
+  sunLight=new THREE.DirectionalLight(0xffcc88,1.4);
   sunLight.position.set(8,15,10);
   sunLight.castShadow=true;
   scene.add(sunLight);
@@ -257,7 +251,7 @@ function initThree(){
   buildTraffic();
   buildObstacles();
   buildCoins();
-  buildDecorations();  // Árboles y edificios en los costados
+  buildDecorations();
   buildEnvironment();
   buildWeather();
 }
@@ -274,19 +268,19 @@ function buildRoad3Lanes(){
   const lineMat=new THREE.MeshStandardMaterial({color:0xffcc44,emissive:0x442200});
   for(let i=-50;i<50;i++){
     // Línea central
-    const centerLine=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.06,1.0),lineMat);
+    const centerLine=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.06,0.9),lineMat);
     centerLine.position.set(0,-0.04,i*CONFIG.segLen);scene.add(centerLine);roadLines.push(centerLine);
     
     // Línea izquierda
-    const leftDivider=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.06,1.0),lineMat);
-    leftDivider.position.set(-3.0,-0.04,i*CONFIG.segLen);scene.add(leftDivider);roadLines.push(leftDivider);
+    const leftDivider=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.06,0.9),lineMat);
+    leftDivider.position.set(-2.8,-0.04,i*CONFIG.segLen);scene.add(leftDivider);roadLines.push(leftDivider);
     
     // Línea derecha
-    const rightDivider=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.06,1.0),lineMat);
-    rightDivider.position.set(3.0,-0.04,i*CONFIG.segLen);scene.add(rightDivider);roadLines.push(rightDivider);
+    const rightDivider=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.06,0.9),lineMat);
+    rightDivider.position.set(2.8,-0.04,i*CONFIG.segLen);scene.add(rightDivider);roadLines.push(rightDivider);
     
-    // Bordes blancos
-    const leftEdge=new THREE.Mesh(new THREE.BoxGeometry(0.15,0.06,CONFIG.segLen),new THREE.MeshStandardMaterial({color:0xffaa66}));
+    // Bordes
+    const leftEdge=new THREE.Mesh(new THREE.BoxGeometry(0.12,0.06,CONFIG.segLen),new THREE.MeshStandardMaterial({color:0xffaa66}));
     leftEdge.position.set(-CONFIG.roadWidth/2+0.25,-0.04,i*CONFIG.segLen);scene.add(leftEdge);
     const rightEdge=leftEdge.clone();rightEdge.position.x=CONFIG.roadWidth/2-0.25;scene.add(rightEdge);
   }
@@ -294,22 +288,22 @@ function buildRoad3Lanes(){
 
 function buildBike(){
   bikeGroup=new THREE.Group();
-  const bodyMat=new THREE.MeshStandardMaterial({color:0xff4400,metalness:0.85,roughness:0.2});
-  bikeBody=new THREE.Mesh(new THREE.BoxGeometry(0.7,0.3,1.8),bodyMat);
+  const bodyMat=new THREE.MeshStandardMaterial({color:0xff4400,metalness:0.85,roughness:0.25});
+  bikeBody=new THREE.Mesh(new THREE.BoxGeometry(0.68,0.3,1.75),bodyMat);
   bikeBody.position.y=0.2;bikeBody.castShadow=true;bikeGroup.add(bikeBody);
   
   const seat=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.12,0.7),new THREE.MeshStandardMaterial({color:0x111111}));
-  seat.position.set(0,0.42,-0.4);bikeGroup.add(seat);
+  seat.position.set(0,0.42,-0.38);bikeGroup.add(seat);
   
-  const wheelMat=new THREE.MeshStandardMaterial({color:0x111111,roughness:0.4});
-  const wheelGeo=new THREE.CylinderGeometry(0.34,0.34,0.5,20);
-  [-0.5,0.5].forEach(x=>{
-    const fw=new THREE.Mesh(wheelGeo,wheelMat);fw.rotation.z=Math.PI/2;fw.position.set(x,0.12,0.85);fw.castShadow=true;bikeGroup.add(fw);wheels.push(fw);
-    const rw=new THREE.Mesh(wheelGeo,wheelMat);rw.rotation.z=Math.PI/2;rw.position.set(x,0.12,-0.88);rw.castShadow=true;bikeGroup.add(rw);wheels.push(rw);
+  const wheelMat=new THREE.MeshStandardMaterial({color:0x111111,roughness:0.5});
+  const wheelGeo=new THREE.CylinderGeometry(0.32,0.32,0.48,18);
+  [-0.48,0.48].forEach(x=>{
+    const fw=new THREE.Mesh(wheelGeo,wheelMat);fw.rotation.z=Math.PI/2;fw.position.set(x,0.12,0.82);fw.castShadow=true;bikeGroup.add(fw);wheels.push(fw);
+    const rw=new THREE.Mesh(wheelGeo,wheelMat);rw.rotation.z=Math.PI/2;rw.position.set(x,0.12,-0.85);rw.castShadow=true;bikeGroup.add(rw);wheels.push(rw);
   });
   
   frontLight=new THREE.SpotLight(0xffcc88,2,20,Math.PI/6,0.5);
-  frontLight.position.set(0,0.45,1.1);frontLight.target.position.set(0,-0.3,-8);
+  frontLight.position.set(0,0.45,1.05);frontLight.target.position.set(0,-0.3,-8);
   bikeGroup.add(frontLight);bikeGroup.add(frontLight.target);
   
   scene.add(bikeGroup);
@@ -319,31 +313,31 @@ function buildTraffic(){
   const colors=[0xcc3333,0x2266cc,0x33aa44,0xeebb22,0x9933cc];
   for(let i=0;i<CONFIG.numCars;i++){
     const g=new THREE.Group();
-    const body=new THREE.Mesh(new THREE.BoxGeometry(0.85,0.42,1.6),new THREE.MeshStandardMaterial({color:colors[i%5],metalness:0.5}));
+    const body=new THREE.Mesh(new THREE.BoxGeometry(0.82,0.4,1.55),new THREE.MeshStandardMaterial({color:colors[i%5],metalness:0.5}));
     body.castShadow=true;g.add(body);
-    const roof=new THREE.Mesh(new THREE.BoxGeometry(0.65,0.28,0.95),new THREE.MeshStandardMaterial({color:0x2a2a2a}));
-    roof.position.y=0.36;g.add(roof);
-    const wheelGeom=new THREE.SphereGeometry(0.17,10);
+    const roof=new THREE.Mesh(new THREE.BoxGeometry(0.62,0.26,0.9),new THREE.MeshStandardMaterial({color:0x2a2a2a}));
+    roof.position.y=0.34;g.add(roof);
+    const wheelGeom=new THREE.SphereGeometry(0.16,8);
     const wheelMat=new THREE.MeshStandardMaterial({color:0x111111});
-    [[-0.52,0.1,-0.65],[0.52,0.1,-0.65],[-0.52,0.1,0.65],[0.52,0.1,0.65]].forEach(p=>{
+    [[-0.5,0.1,-0.62],[0.5,0.1,-0.62],[-0.5,0.1,0.62],[0.5,0.1,0.62]].forEach(p=>{
       const w=new THREE.Mesh(wheelGeom,wheelMat);w.position.set(p[0],p[1],p[2]);w.scale.set(0.8,0.5,0.8);g.add(w);
     });
     const laneIndex=Math.floor(Math.random()*3);
     const laneX=CONFIG.lanes[laneIndex];
     g.position.set(laneX,0.2,-35-i*22);
     scene.add(g);
-    cars.push({obj:g,speed:CONFIG.aiSpeed+Math.random()*50,lane:laneX});
+    cars.push({obj:g,speed:CONFIG.aiSpeed+Math.random()*40,lane:laneX});
   }
 }
 
 function buildObstacles(){
   for(let i=0;i<CONFIG.numObstacles;i++){
     const g=new THREE.Group();
-    const barrel=new THREE.Mesh(new THREE.CylinderGeometry(0.3,0.34,0.6,8),new THREE.MeshStandardMaterial({color:0xcc6600,roughness:0.6}));
+    const barrel=new THREE.Mesh(new THREE.CylinderGeometry(0.28,0.32,0.55,8),new THREE.MeshStandardMaterial({color:0xcc6600,roughness:0.6}));
     barrel.castShadow=true;g.add(barrel);
     const laneIndex=Math.floor(Math.random()*3);
     const laneX=CONFIG.lanes[laneIndex];
-    g.position.set(laneX,0.2,-50-i*38);
+    g.position.set(laneX,0.18,-48-i*38);
     scene.add(g);
     obstacles.push({obj:g,lane:laneX,hit:false});
   }
@@ -352,76 +346,68 @@ function buildObstacles(){
 function buildCoins(){
   for(let i=0;i<CONFIG.numCoins;i++){
     const coinGroup=new THREE.Group();
-    const coinBody=new THREE.Mesh(new THREE.CylinderGeometry(0.2,0.2,0.04,12),new THREE.MeshStandardMaterial({color:0xffcc00,metalness:0.8,emissive:0xff8800,emissiveIntensity:0.3}));
+    const coinBody=new THREE.Mesh(new THREE.CylinderGeometry(0.18,0.18,0.03,10),new THREE.MeshStandardMaterial({color:0xffcc00,metalness:0.8,emissive:0xff8800,emissiveIntensity:0.3}));
     coinBody.rotation.x=Math.PI/2;coinGroup.add(coinBody);
     const laneIndex=Math.floor(Math.random()*3);
     const laneX=CONFIG.lanes[laneIndex]+(Math.random()-0.5)*0.7;
-    coinGroup.position.set(laneX,0.26,-55-i*20);
+    coinGroup.position.set(laneX,0.24,-55-i*20);
     coinGroup.userData={value:15};
     scene.add(coinGroup);
     coins.push(coinGroup);
   }
 }
 
-// ========== DECORACIÓN: ÁRBOLES Y EDIFICIOS EN LOS COSTADOS ==========
+// DECORACIONES
 function buildDecorations(){
   // Árboles
   const trunkMat=new THREE.MeshStandardMaterial({color:0x4a2a10});
   const leafMat=new THREE.MeshStandardMaterial({color:0x2a7a2a});
-  for(let i=0;i<80;i++){
+  for(let i=0;i<60;i++){
     const tree=new THREE.Group();
-    const trunk=new THREE.Mesh(new THREE.CylinderGeometry(0.2,0.28,1.2,6),trunkMat);
+    const trunk=new THREE.Mesh(new THREE.CylinderGeometry(0.18,0.25,1.0,5),trunkMat);
     trunk.castShadow=true;tree.add(trunk);
-    const leaf=new THREE.Mesh(new THREE.ConeGeometry(0.55,1.1,6),leafMat);
-    leaf.position.y=1.3;leaf.castShadow=true;tree.add(leaf);
-    const side=(Math.random()>.5?1:-1)*(CONFIG.roadWidth/2+1.5+Math.random()*2.5);
-    tree.position.set(side,0.4,-30-i*12);
-    tree.scale.setScalar(0.7+Math.random()*0.5);
+    const leaf=new THREE.Mesh(new THREE.ConeGeometry(0.5,1.0,5),leafMat);
+    leaf.position.y=1.1;leaf.castShadow=true;tree.add(leaf);
+    const side=(Math.random()>.5?1:-1)*(CONFIG.roadWidth/2+1.8+Math.random()*2);
+    tree.position.set(side,0.35,-25-i*14);
+    tree.scale.setScalar(0.6+Math.random()*0.5);
     scene.add(tree);
     decorations.push(tree);
   }
   
   // Edificios
-  const buildingColors=[0x1a2535,0x252525,0x1e1e2e,0x181828,0x0f1f30,0x2a2a3a];
-  for(let i=0;i<40;i++){
-    const bh=3+Math.random()*8;
-    const bw=1.8+Math.random()*2;
-    const bd=1.8+Math.random()*2;
-    const building=new THREE.Mesh(new THREE.BoxGeometry(bw,bh,bd),new THREE.MeshStandardMaterial({color:buildingColors[i%6],roughness:0.6}));
-    const side=(Math.random()>.5?1:-1)*(CONFIG.roadWidth/2+3.5+Math.random()*3);
-    building.position.set(side,bh/2,-20-i*18);
+  const buildingColors=[0x1a2535,0x252525,0x1e1e2e,0x181828];
+  for(let i=0;i<30;i++){
+    const bh=2.5+Math.random()*7;
+    const bw=1.5+Math.random()*1.8;
+    const bd=1.5+Math.random()*1.8;
+    const building=new THREE.Mesh(new THREE.BoxGeometry(bw,bh,bd),new THREE.MeshStandardMaterial({color:buildingColors[i%4],roughness:0.7}));
+    const side=(Math.random()>.5?1:-1)*(CONFIG.roadWidth/2+3.2+Math.random()*2.5);
+    building.position.set(side,bh/2,-18-i*22);
     building.castShadow=true;building.receiveShadow=true;
     scene.add(building);
     decorations.push(building);
-    
-    // Ventanas
-    const windowMat=new THREE.MeshStandardMaterial({color:0xffaa66,emissive:0xff6600,emissiveIntensity:0.4});
-    for(let wy=0.8;wy<bh-0.5;wy+=1.2){
-      const win=new THREE.Mesh(new THREE.BoxGeometry(0.4,0.5,0.05),windowMat);
-      win.position.set(side>0?bw/2+0.02:-bw/2-0.02,wy,0);
-      scene.add(win);
-    }
   }
 }
 
 function buildEnvironment(){
   const starGeo=new THREE.BufferGeometry();
   const starPos=[];
-  for(let i=0;i<1000;i++){starPos.push((Math.random()-.5)*300);starPos.push(10+Math.random()*50);starPos.push((Math.random()-.5)*180-50);}
+  for(let i=0;i<800;i++){starPos.push((Math.random()-.5)*300);starPos.push(10+Math.random()*45);starPos.push((Math.random()-.5)*180-50);}
   starGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(starPos),3));
-  stars=new THREE.Points(starGeo,new THREE.PointsMaterial({color:0xffffff,size:0.07}));
+  stars=new THREE.Points(starGeo,new THREE.PointsMaterial({color:0xffffff,size:0.06}));
   scene.add(stars);
 }
 
 function buildWeather(){
-  const N=1000,geo=new THREE.BufferGeometry(),pos=new Float32Array(N*3);
-  for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*50;pos[i*3+1]=Math.random()*14;pos[i*3+2]=(Math.random()-.5)*65-25;}
+  const N=800,geo=new THREE.BufferGeometry(),pos=new Float32Array(N*3);
+  for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*50;pos[i*3+1]=Math.random()*13;pos[i*3+2]=(Math.random()-.5)*60-25;}
   geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  rain=new THREE.Points(geo,new THREE.PointsMaterial({color:0x88aaff,size:0.06,transparent:true,opacity:0}));
+  rain=new THREE.Points(geo,new THREE.PointsMaterial({color:0x88aaff,size:0.05,transparent:true,opacity:0}));
   scene.add(rain);
 }
 
-// ========== FÍSICA CON LÍMITES ESTRICTOS ==========
+// ========== FÍSICA ==========
 function updatePhysics(dt){
   if(!state.running||state.paused)return;
   const useNitro=keys.nitro&&state.nitro>0.05;
@@ -432,51 +418,51 @@ function updatePhysics(dt){
     if(useNitro){accel*=CONFIG.nitroMult;state.nitro=Math.max(0,state.nitro-CONFIG.nitroDrain);}
     state.speed=Math.min(CONFIG.maxSpeed,state.speed+accel);
   }else if(keys.down){
-    state.speed=Math.max(30,state.speed-CONFIG.baseAccel*1.3);
+    state.speed=Math.max(25,state.speed-CONFIG.baseAccel*1.2);
   }else{
-    state.speed=Math.max(45,state.speed*(1-dt*0.35));
+    state.speed=Math.max(40,state.speed*(1-dt*0.3));
   }
   if(!useNitro)state.nitro=Math.min(1,state.nitro+CONFIG.nitroRegen*dt*60);
   
-  // Dirección con límites estrictos (NO SALIRSE DEL CARRIL)
+  // Dirección con límites
   const turn=CONFIG.turnBase*(0.5+state.speed/CONFIG.maxSpeed*0.5);
-  if(keys.left){state.bikeXVel-=turn*dt*60;state.drift=Math.max(-0.8,state.drift-dt*2);}
-  else if(keys.right){state.bikeXVel+=turn*dt*60;state.drift=Math.min(0.8,state.drift+dt*2);}
-  else state.drift*=0.95;
-  state.bikeXVel*=0.92;
+  if(keys.left){state.bikeXVel-=turn*dt*60;state.drift=Math.max(-0.7,state.drift-dt*1.8);}
+  else if(keys.right){state.bikeXVel+=turn*dt*60;state.drift=Math.min(0.7,state.drift+dt*1.8);}
+  else state.drift*=0.96;
+  state.bikeXVel*=0.94;
   
-  // LÍMITES ESTRICTOS - No se puede salir de la carretera
+  // Límites estrictos
   let newX=state.bikeX+state.bikeXVel*dt*60;
   if(newX>CONFIG.roadRightLimit)newX=CONFIG.roadRightLimit;
   if(newX<CONFIG.roadLeftLimit)newX=CONFIG.roadLeftLimit;
   state.bikeX=newX;
   
   bikeGroup.position.x=state.bikeX;
-  bikeGroup.rotation.z=-state.drift*0.18;
-  wheels.forEach(w=>w.rotation.x+=state.speed*0.045*dt*60);
+  bikeGroup.rotation.z=-state.drift*0.15;
+  wheels.forEach(w=>w.rotation.x+=state.speed*0.04*dt*60);
   
   // Cámara
-  camera.position.x+=(state.bikeX*0.35-camera.position.x)*0.12;
-  camera.position.z=4.8-(state.speed/CONFIG.maxSpeed)*0.8;
-  camera.lookAt(state.bikeX*0.5,0.5,-6);
+  camera.position.x+=(state.bikeX*0.3-camera.position.x)*0.12;
+  camera.position.z=4.8-(state.speed/CONFIG.maxSpeed)*0.7;
+  camera.lookAt(state.bikeX*0.4,0.5,-5.5);
   
-  const scroll=state.speed*0.22*dt;
+  const scroll=state.speed*0.2*dt;
   roadLines.forEach(l=>{l.position.z+=scroll;if(l.position.z>8)l.position.z-=240;});
-  decorations.forEach(d=>{d.position.z+=scroll*0.9;if(d.position.z>25)d.position.z-=120;});
+  decorations.forEach(d=>{d.position.z+=scroll*0.85;if(d.position.z>25)d.position.z-=120;});
   
   // Tráfico
   cars.forEach(c=>{
-    c.obj.position.z+=(state.speed-c.speed)*dt*0.8+scroll*0.6;
+    c.obj.position.z+=(state.speed-c.speed)*dt*0.75+scroll*0.55;
     if(c.obj.position.z>18){
-      c.obj.position.z=-60-Math.random()*40;
+      c.obj.position.z=-55-Math.random()*35;
       const laneIndex=Math.floor(Math.random()*3);
       c.lane=CONFIG.lanes[laneIndex];
       c.obj.position.x=c.lane;
     }
     if(state.invincible<=0){
       const dx=Math.abs(c.obj.position.x-state.bikeX),dz=Math.abs(c.obj.position.z+0.6);
-      if(dx<1.0&&dz<1.3){
-        state.speed*=0.55;state.score=Math.max(0,state.score-150);state.combo=1;
+      if(dx<0.95&&dz<1.2){
+        state.speed*=0.6;state.score=Math.max(0,state.score-100);state.combo=1;
         state.invincible=1.2;
         state.lives--;
         updateLives();
@@ -492,7 +478,7 @@ function updatePhysics(dt){
   obstacles.forEach(o=>{
     o.obj.position.z+=scroll;
     if(o.obj.position.z>18){
-      o.obj.position.z=-75-Math.random()*55;
+      o.obj.position.z=-70-Math.random()*50;
       const laneIndex=Math.floor(Math.random()*3);
       o.lane=CONFIG.lanes[laneIndex];
       o.obj.position.x=o.lane;
@@ -500,11 +486,11 @@ function updatePhysics(dt){
     }
     if(!o.hit&&state.invincible<=0){
       const dx=Math.abs(o.obj.position.x-state.bikeX),dz=Math.abs(o.obj.position.z+0.4);
-      if(dx<0.9&&dz<0.9){
-        state.coins=Math.max(0,state.coins-25);
-        state.speed*=0.9;
+      if(dx<0.85&&dz<0.85){
+        state.coins=Math.max(0,state.coins-20);
+        state.speed*=0.92;
         o.hit=true;
-        showFloatingText("-💰25");
+        showFloatingText("-💰20");
       }
     }
   });
@@ -512,24 +498,24 @@ function updatePhysics(dt){
   // Monedas
   coins.forEach(c=>{
     c.position.z+=scroll;
-    c.rotation.y+=0.1;c.rotation.x=Math.sin(Date.now()*0.008)*0.4;
+    c.rotation.y+=0.1;c.rotation.x=Math.sin(Date.now()*0.01)*0.3;
     if(c.position.z>15){
-      c.position.z=-95-Math.random()*65;
+      c.position.z=-90-Math.random()*60;
       const laneIndex=Math.floor(Math.random()*3);
       c.position.x=CONFIG.lanes[laneIndex]+(Math.random()-0.5)*0.7;
     }
     const dx=Math.abs(c.position.x-state.bikeX),dz=Math.abs(c.position.z+0.3);
-    if(dx<0.8&&dz<0.9){
-      state.coins+=c.userData.value;state.score+=60;state.combo=Math.min(6,state.combo+0.2);
+    if(dx<0.75&&dz<0.85){
+      state.coins+=c.userData.value;state.score+=50;state.combo=Math.min(5,state.combo+0.2);
       showFloatingText("+💰"+c.userData.value);
-      c.position.z=-110;
+      c.position.z=-105;
       const laneIndex=Math.floor(Math.random()*3);
       c.position.x=CONFIG.lanes[laneIndex];
     }
   });
   
   state.distance+=state.speed*dt;
-  state.score+=state.speed*dt*0.8*state.combo;
+  state.score+=state.speed*dt*0.7*state.combo;
   state.maxSpeed=Math.max(state.maxSpeed,state.speed);
   if(state.invincible>0)state.invincible-=dt;
   
@@ -550,7 +536,7 @@ function showFloatingText(text){
   div.className='coin-pop';
   div.style.left='50%';
   div.style.transform='translateX(-50%)';
-  div.style.top=innerHeight/2+'px';
+  div.style.top=window.innerHeight/2+'px';
   div.style.color=text.includes('+')?'#ffcc00':'#ff6666';
   document.body.appendChild(div);
   setTimeout(()=>div.remove(),700);
@@ -562,14 +548,14 @@ function updateWeather(dt){
     state.weather=types[Math.floor(Math.random()*types.length)];
     const icons={clear:'☀️',rain:'🌧️',fog:'🌫️'};
     document.getElementById('weather-icon').textContent=icons[state.weather];
-    if(state.weather==='rain'){rain.material.opacity=0.5;scene.fog.density=0.018;}
+    if(state.weather==='rain'){rain.material.opacity=0.45;scene.fog.density=0.018;}
     else if(state.weather==='fog'){rain.material.opacity=0;scene.fog.density=0.045;}
-    else{rain.material.opacity=0;scene.fog.density=0.01;}
+    else{rain.material.opacity=0;scene.fog.density=0.012;}
   }
-  if(state.weather==='rain')rain.rotation.y+=0.015;
+  if(state.weather==='rain')rain.rotation.y+=0.012;
   state.timeOfDay+=dt*0.0005;
   if(state.timeOfDay>1)state.timeOfDay=0;
-  const intensity=0.4+Math.sin(state.timeOfDay*Math.PI)*0.7;
+  const intensity=0.4+Math.sin(state.timeOfDay*Math.PI)*0.6;
   sunLight.intensity=intensity*(settings.nightMode?0.4:1);
 }
 
@@ -578,7 +564,7 @@ function updateHUD(){
   document.getElementById('coin-count').textContent=Math.floor(state.coins);
   document.getElementById('score-val').textContent=Math.floor(state.score);
   const comboDiv=document.getElementById('combo-pop');
-  if(state.combo>1.2){
+  if(state.combo>1.1){
     comboDiv.textContent=`⚡ COMBO x${state.combo.toFixed(1)} ⚡`;
     comboDiv.style.opacity='0.8';
     setTimeout(()=>comboDiv.style.opacity='0',250);
@@ -586,10 +572,10 @@ function updateHUD(){
 }
 
 function spawnExhaust(){
-  if(!state.running||state.paused||state.speed<70)return;
+  if(!state.running||state.paused||state.speed<60)return;
   const useNitro=keys.nitro&&state.nitro>0.05;
-  const p=new THREE.Mesh(new THREE.SphereGeometry(0.06,4),new THREE.MeshStandardMaterial({color:useNitro?0x00aaff:0xff7733,emissive:useNitro?0x0088ff:0xff4400}));
-  p.position.set(state.bikeX+(Math.random()-.5)*0.3,0.1,-1.1);
+  const p=new THREE.Mesh(new THREE.SphereGeometry(0.05,4),new THREE.MeshStandardMaterial({color:useNitro?0x00aaff:0xff7733,emissive:useNitro?0x0088ff:0xff4400}));
+  p.position.set(state.bikeX+(Math.random()-.5)*0.3,0.1,-1.05);
   scene.add(p);
   exhaustParticles.push({mesh:p,life:1});
 }
@@ -609,12 +595,12 @@ function animate(){
   updateWeather(dt);
   updateExhaust(dt);
   lastExhaust+=dt;
-  if(lastExhaust>0.045){spawnExhaust();lastExhaust=0;}
+  if(lastExhaust>0.05){spawnExhaust();lastExhaust=0;}
   if(stars)stars.rotation.y+=dt*0.0003;
   renderer.render(scene,camera);
 }
 
-// ========== CONTROLES MÓVIL ==========
+// ========== CONTROLES TÁCTILES ==========
 function initControls(){
   // Volante táctil
   const wheel=document.getElementById('steering-wheel');
@@ -660,7 +646,7 @@ function togglePause(){
 }
 
 function startGame(){
-  state={...state,running:true,paused:false,speed:60,nitro:0.8,bikeX:0,bikeXVel:0,
+  state={...state,running:true,paused:false,speed:50,nitro:0.8,bikeX:0,bikeXVel:0,
     score:0,coins:0,lives:3,distance:0,maxSpeed:0,combo:1,invincible:0};
   bikeGroup.position.x=0;keys.up=true;
   updateLives();
@@ -705,6 +691,13 @@ function setupMenus(){
     nightToggle.classList.toggle('active',settings.nightMode);
   });
 }
+
+// Orientación horizontal
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+});
 
 window.addEventListener('load',()=>{
   initThree();
