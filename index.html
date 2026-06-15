@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#ff4400">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>Moto Racer X - Real Driving</title>
+  <title>Moto Racer X - 3 Carriles Realista</title>
   <link rel="manifest" href="data:application/manifest+json,{
     %22name%22:%22Moto%20Racer%20X%22,
     %22short_name%22:%22MotoRacer%22,
@@ -25,91 +25,100 @@
     /* HUD */
     #hud{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10}
     
-    /* Velocímetro */
-    #speed-panel{position:fixed;bottom:130px;left:15px;background:linear-gradient(145deg,rgba(0,0,0,.9),rgba(0,0,0,.7));backdrop-filter:blur(10px);border-radius:25px;padding:10px 20px;border-left:4px solid #ff4400;box-shadow:0 5px 20px rgba(0,0,0,.5)}
-    #speed-val{font-size:56px;color:#ff4400;font-weight:900;font-family:'Monaco','Courier New',monospace;line-height:1;text-shadow:0 0 10px rgba(255,68,0,.5)}
-    #speed-unit{font-size:11px;color:#fff;opacity:.6}
-    #rpm-bar{width:100%;height:3px;background:#333;margin-top:5px;border-radius:3px;overflow:hidden}
-    #rpm-fill{height:100%;width:60%;background:linear-gradient(90deg,#0f0,#ff0,#f00);border-radius:3px}
+    /* Velocímetro realista */
+    #speed-panel{position:fixed;bottom:140px;left:15px;background:linear-gradient(145deg,rgba(0,0,0,.95),rgba(20,20,30,.9));backdrop-filter:blur(10px);border-radius:20px;padding:8px 16px;border-left:3px solid #ff4400;box-shadow:0 5px 20px rgba(0,0,0,.5)}
+    #speed-val{font-size:48px;color:#ff4400;font-weight:900;font-family:'Monaco','Courier New',monospace;line-height:1}
+    #speed-unit{font-size:10px;color:#fff;opacity:.6}
+    #rpm-bar{width:100%;height:2px;background:#333;margin-top:4px;border-radius:2px}
+    #rpm-fill{height:100%;width:60%;background:linear-gradient(90deg,#0f0,#ff0,#f00);border-radius:2px}
     
     /* Vidas */
-    #lives-panel{position:fixed;top:15px;left:15px;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border-radius:30px;padding:8px 16px;display:flex;gap:8px;font-size:24px}
-    .heart{color:#ff3366;text-shadow:0 0 5px rgba(255,51,102,.5)}
-    .heart.lost{opacity:0.2;color:#666}
+    #lives-panel{position:fixed;top:12px;left:12px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-radius:25px;padding:6px 14px;display:flex;gap:6px;font-size:22px}
+    .heart{color:#ff3366}
+    .heart.lost{opacity:0.2}
     
     /* Monedas y score */
-    #coin-panel{position:fixed;top:15px;right:15px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border-radius:30px;padding:8px 18px;display:flex;align-items:center;gap:8px}
-    #coin-count{color:gold;font-size:20px;font-weight:900}
-    #score-panel{position:fixed;top:70px;right:15px;background:rgba(0,0,0,.4);border-radius:20px;padding:5px 12px;font-size:12px;color:#fff}
-    #weather-icon{position:fixed;top:15px;right:110px;font-size:28px;background:rgba(0,0,0,.4);border-radius:50%;padding:6px 10px}
+    #coin-panel{position:fixed;top:12px;right:12px;background:rgba(0,0,0,.5);backdrop-filter:blur(10px);border-radius:25px;padding:6px 16px;display:flex;align-items:center;gap:6px}
+    #coin-count{color:gold;font-size:18px;font-weight:900}
+    #score-panel{position:fixed;top:60px;right:12px;background:rgba(0,0,0,.4);border-radius:15px;padding:4px 10px;font-size:11px;color:#fff}
+    #weather-icon{position:fixed;top:12px;right:100px;font-size:24px;background:rgba(0,0,0,.4);border-radius:50%;padding:5px 8px}
     
-    /* Combo */
-    #combo-pop{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);font-size:36px;font-weight:900;color:#ff8800;text-shadow:0 0 20px rgba(255,136,0,.8);pointer-events:none;opacity:0;transition:opacity .2s;z-index:15;white-space:nowrap}
+    /* Combo flotante */
+    #combo-pop{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);font-size:32px;font-weight:900;color:#ff8800;text-shadow:0 0 20px rgba(255,136,0,.8);pointer-events:none;opacity:0;transition:opacity .2s;z-index:15}
     
-    /* CONTROLES ESTILO VOLANTE REAL */
-    #controls-container{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:flex-end;gap:15px;padding:15px 20px 25px;z-index:20;pointer-events:auto;background:linear-gradient(to top,rgba(0,0,0,.5),transparent)}
+    /* CONTROLES ESTILO COCHE REAL - PEDALES CON FORMA REAL */
+    #controls-container{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:flex-end;gap:12px;padding:12px 15px 20px;z-index:20;pointer-events:auto;background:linear-gradient(to top,rgba(0,0,0,.6),transparent)}
     
-    /* Volante de dirección */
-    .steering-wheel{width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#2a2a2a,#0a0a0a);border:3px solid #ff4400;box-shadow:0 10px 25px rgba(0,0,0,.5),inset 0 2px 5px rgba(255,255,255,.1);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .05s linear;position:relative}
-    .steering-wheel:active{transform:scale(0.96)}
-    .steering-wheel .wheel-icon{font-size:48px;color:#ff4400;margin-bottom:5px}
-    .steering-wheel .wheel-label{font-size:10px;color:#fff;opacity:.7;letter-spacing:1px}
-    .steering-wheel .left-right{position:absolute;width:100%;display:flex;justify-content:space-between;padding:0 15px;top:50%;transform:translateY(-50%);pointer-events:none}
-    .steering-wheel .left-right span{font-size:24px;color:#ff4400;text-shadow:0 0 5px #ff4400}
+    /* Volante profesional */
+    .steering-wheel{width:130px;height:130px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#3a3a3a,#1a1a1a);border:3px solid #ff4400;box-shadow:0 8px 20px rgba(0,0,0,.5),inset 0 2px 5px rgba(255,255,255,.1);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative}
+    .steering-wheel:active{transform:scale(0.97)}
+    .wheel-icon{font-size:42px;color:#ff4400;margin-bottom:4px}
+    .wheel-label{font-size:9px;color:#fff;opacity:.7}
+    .wheel-arrows{position:absolute;width:100%;display:flex;justify-content:space-between;padding:0 12px;top:50%;transform:translateY(-50%);pointer-events:none}
+    .wheel-arrows span{font-size:20px;color:#ff4400;opacity:.6}
     
-    /* Pedales estilo coche real */
-    .pedals{display:flex;flex-direction:column;gap:12px}
-    .pedal{width:100px;height:95px;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .08s linear;box-shadow:0 8px 20px rgba(0,0,0,.4);border:2px solid rgba(255,255,255,.2)}
-    .pedal:active{transform:scale(0.94)}
-    .pedal-gas{background:radial-gradient(ellipse at 30% 40%,#44ff44,#008800);box-shadow:0 0 20px rgba(68,255,68,.3)}
-    .pedal-brake{background:radial-gradient(ellipse at 30% 40%,#ff4444,#aa0000);box-shadow:0 0 20px rgba(255,68,68,.3)}
-    .pedal-icon{font-size:38px;margin-bottom:5px}
-    .pedal-label{font-size:11px;font-weight:bold;color:#fff;text-transform:uppercase;letter-spacing:2px}
+    /* Pedales con forma REAL de coche (metal, con relieve) */
+    .pedals-container{display:flex;gap:12px;background:rgba(0,0,0,.3);border-radius:30px;padding:8px 12px}
+    
+    .real-pedal{width:85px;height:95px;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .06s linear;box-shadow:0 5px 15px rgba(0,0,0,.5),inset 0 1px 3px rgba(255,255,255,.2);position:relative;overflow:hidden}
+    .real-pedal:active{transform:scale(0.94)}
+    
+    /* Pedal Acelerador - Estilo coche real (metal pulido) */
+    .gas-pedal-real{background:linear-gradient(145deg,#c0c0c0,#a0a0a0);border-bottom:4px solid #00aa44;border-right:2px solid rgba(0,0,0,.2)}
+    .gas-pedal-real::before{content:'';position:absolute;top:5px;left:8px;right:8px;height:30%;background:linear-gradient(135deg,rgba(255,255,255,.4),transparent);border-radius:12px}
+    .gas-pedal-real .pedal-symbol{font-size:32px;color:#00aa44;text-shadow:0 1px 2px rgba(0,0,0,.3)}
+    
+    /* Pedal Freno - Estilo coche real (metal oscuro) */
+    .brake-pedal-real{background:linear-gradient(145deg,#888,#666);border-bottom:4px solid #cc0000;border-right:2px solid rgba(0,0,0,.2)}
+    .brake-pedal-real::before{content:'';position:absolute;top:5px;left:8px;right:8px;height:30%;background:linear-gradient(135deg,rgba(255,255,255,.3),transparent);border-radius:12px}
+    .brake-pedal-real .pedal-symbol{font-size:32px;color:#cc0000;text-shadow:0 1px 2px rgba(0,0,0,.3)}
+    
+    .pedal-label-real{font-size:9px;font-weight:bold;color:#333;margin-top:6px;text-transform:uppercase;letter-spacing:1px}
     
     /* Botón Nitro estilo botón de carrera */
-    .nitro-btn{width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#00aaff,#0055aa);box-shadow:0 0 15px #00aaff,inset 0 2px 5px rgba(255,255,255,.3);border:2px solid rgba(255,255,255,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .08s}
-    .nitro-btn:active{transform:scale(0.92);background:#00ccff;box-shadow:0 0 25px #00ccff}
-    .nitro-btn .icon{font-size:36px}
-    .nitro-btn .label{font-size:10px;margin-top:4px;font-weight:bold}
+    .nitro-btn-real{width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#0088dd,#0044aa);box-shadow:0 0 12px #0088ff,inset 0 1px 3px rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
+    .nitro-btn-real:active{transform:scale(0.93);background:#00aaff;box-shadow:0 0 20px #00aaff}
+    .nitro-icon{font-size:34px}
+    .nitro-label{font-size:9px;margin-top:3px;font-weight:bold;color:#fff}
     
     /* Botón pausa */
-    .pause-btn{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:14px;padding:6px 25px;border-radius:30px;cursor:pointer;z-index:30;pointer-events:auto;bottom:140px}
+    .pause-btn{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;padding:5px 22px;border-radius:25px;cursor:pointer;z-index:30;pointer-events:auto;bottom:145px}
     
     /* Menús */
     .menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(145deg,#050510,#0a0a2e,#000);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:100;transition:all .4s}
     .menu-overlay.hidden{opacity:0;pointer-events:none}
-    .menu-title{font-size:48px;font-weight:900;color:#ff4400;text-shadow:0 0 30px rgba(255,68,0,.8);margin-bottom:10px}
-    .menu-logo{font-size:80px;margin-bottom:10px;animation:float 2s ease-in-out infinite}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    .menu-btn{background:linear-gradient(45deg,#ff4400,#ff8800);border:none;color:#fff;font-size:18px;padding:14px 40px;border-radius:50px;margin:8px;cursor:pointer;font-weight:bold;width:240px}
+    .menu-title{font-size:44px;font-weight:900;color:#ff4400;text-shadow:0 0 30px rgba(255,68,0,.8);margin-bottom:8px}
+    .menu-logo{font-size:70px;margin-bottom:8px;animation:float 2s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .menu-btn{background:linear-gradient(45deg,#ff4400,#ff8800);border:none;color:#fff;font-size:17px;padding:12px 35px;border-radius:50px;margin:6px;cursor:pointer;font-weight:bold;width:220px}
     .menu-btn:active{transform:scale(0.96)}
     .menu-btn.secondary{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2)}
     
-    .settings-panel{background:rgba(0,0,0,.8);backdrop-filter:blur(20px);border-radius:28px;padding:25px;margin:15px;width:300px}
-    .settings-row{display:flex;justify-content:space-between;align-items:center;margin:15px 0;color:#fff}
-    .toggle-switch{width:52px;height:28px;background:#333;border-radius:14px;cursor:pointer;position:relative}
+    .settings-panel{background:rgba(0,0,0,.8);backdrop-filter:blur(20px);border-radius:25px;padding:20px;margin:15px;width:280px}
+    .settings-row{display:flex;justify-content:space-between;align-items:center;margin:12px 0;color:#fff;font-size:14px}
+    .toggle-switch{width:48px;height:26px;background:#333;border-radius:13px;cursor:pointer;position:relative}
     .toggle-switch.active{background:#ff4400}
-    .toggle-switch::after{content:'';position:absolute;width:24px;height:24px;background:#fff;border-radius:12px;top:2px;left:3px;transition:.2s}
-    .toggle-switch.active::after{left:25px}
+    .toggle-switch::after{content:'';position:absolute;width:22px;height:22px;background:#fff;border-radius:11px;top:2px;left:3px;transition:.2s}
+    .toggle-switch.active::after{left:23px}
     
     #gameover-panel,#pause-panel{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);backdrop-filter:blur(10px);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:90;opacity:0;pointer-events:none;transition:opacity .3s}
     #gameover-panel.visible,#pause-panel.visible{opacity:1;pointer-events:auto}
     
     @media(max-width:600px){
-      .steering-wheel{width:110px;height:110px}
-      .steering-wheel .wheel-icon{font-size:36px}
-      .pedal{width:75px;height:80px}
-      .pedal-icon{font-size:28px}
-      .nitro-btn{width:70px;height:70px}
-      .nitro-btn .icon{font-size:28px}
-      .pause-btn{bottom:130px}
+      .steering-wheel{width:100px;height:100px}
+      .wheel-icon{font-size:32px}
+      .real-pedal{width:70px;height:80px}
+      .gas-pedal-real .pedal-symbol,.brake-pedal-real .pedal-symbol{font-size:26px}
+      .nitro-btn-real{width:65px;height:65px}
+      .nitro-icon{font-size:28px}
+      .pause-btn{bottom:135px}
       .menu-title{font-size:32px}
     }
     
     .damage-flash{animation:damageFlash .2s 2}
     @keyframes damageFlash{0%,100%{background:transparent}50%{background:rgba(255,0,0,.4)}}
-    .coin-pop{position:fixed;animation:coinFloat 1s ease-out forwards;pointer-events:none;z-index:200;font-size:22px;font-weight:bold}
-    @keyframes coinFloat{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-100px)}}
+    .coin-pop{position:fixed;animation:coinFloat 1s ease-out forwards;pointer-events:none;z-index:200;font-size:20px;font-weight:bold}
+    @keyframes coinFloat{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-80px)}}
   </style>
 </head>
 <body>
@@ -117,26 +126,25 @@
 <div id="main-menu" class="menu-overlay">
   <div class="menu-logo">🏍️🔥</div>
   <div class="menu-title">MOTO RACER X</div>
-  <div style="color:#fff;opacity:.7;font-size:13px;margin-bottom:30px">Real Driving Simulator | Nitro | Dynamic Weather</div>
-  <button class="menu-btn" id="start-btn">🚀 INICIAR CARRERA</button>
+  <div style="color:#fff;opacity:.7;font-size:12px;margin-bottom:25px">3 Carriles | Controles Reales | Nitro</div>
+  <button class="menu-btn" id="start-btn">🚀 INICIAR</button>
   <button class="menu-btn secondary" id="settings-btn">⚙️ AJUSTES</button>
   <button class="menu-btn secondary" id="stats-btn">🏆 ESTADÍSTICAS</button>
 </div>
 
 <div id="settings-menu" class="menu-overlay hidden">
-  <div class="menu-title" style="font-size:32px">⚙️ AJUSTES</div>
+  <div class="menu-title" style="font-size:28px">⚙️ AJUSTES</div>
   <div class="settings-panel">
-    <div class="settings-row">🎮 Controles táctiles<div id="ctrl-toggle" class="toggle-switch active"></div></div>
+    <div class="settings-row">🎮 Controles<div id="ctrl-toggle" class="toggle-switch active"></div></div>
     <div class="settings-row">🌙 Modo noche<div id="night-toggle" class="toggle-switch"></div></div>
-    <div class="settings-row">✨ Calidad gráfica<div><select id="quality-select" style="background:#333;color:#fff;border:none;padding:5px;border-radius:8px"><option value="0">Baja</option><option value="1" selected>Alta</option><option value="2">Ultra</option></select></div></div>
   </div>
   <button class="menu-btn secondary" id="settings-back">◀ VOLVER</button>
 </div>
 
 <div id="gameover-panel">
-  <div style="font-size:60px">💀</div>
-  <div style="font-size:34px;font-weight:900;color:#ff4400">GAME OVER</div>
-  <div style="margin:25px;text-align:center;color:#fff;line-height:2">
+  <div style="font-size:55px">💀</div>
+  <div style="font-size:30px;font-weight:900;color:#ff4400">GAME OVER</div>
+  <div style="margin:20px;text-align:center;color:#fff;line-height:1.8">
     🏆 Puntaje: <span id="go-score">0</span><br>
     📍 Distancia: <span id="go-dist">0</span>m<br>
     💰 Monedas: <span id="go-coins">0</span><br>
@@ -147,8 +155,8 @@
 </div>
 
 <div id="pause-panel">
-  <div style="font-size:60px">⏸️</div>
-  <div style="font-size:34px;font-weight:900;color:#fff">PAUSA</div>
+  <div style="font-size:55px">⏸️</div>
+  <div style="font-size:30px;font-weight:900;color:#fff">PAUSA</div>
   <button class="menu-btn" id="resume-btn">▶️ CONTINUAR</button>
 </div>
 
@@ -171,25 +179,25 @@
   <div class="steering-wheel" id="steering-wheel">
     <div class="wheel-icon">🚗</div>
     <div class="wheel-label">VOLANTE</div>
-    <div class="left-right"><span>◀</span><span>▶</span></div>
+    <div class="wheel-arrows"><span>◀</span><span>▶</span></div>
   </div>
   
-  <!-- Pedales -->
-  <div class="pedals">
-    <div class="pedal pedal-gas" id="gas-pedal">
-      <div class="pedal-icon">⏺</div>
-      <div class="pedal-label">ACELERAR</div>
+  <!-- Pedales con forma REAL -->
+  <div class="pedals-container">
+    <div class="real-pedal gas-pedal-real" id="gas-pedal">
+      <div class="pedal-symbol">⏺</div>
+      <div class="pedal-label-real">ACELERAR</div>
     </div>
-    <div class="pedal pedal-brake" id="brake-pedal">
-      <div class="pedal-icon">●</div>
-      <div class="pedal-label">FRENAR</div>
+    <div class="real-pedal brake-pedal-real" id="brake-pedal">
+      <div class="pedal-symbol">●</div>
+      <div class="pedal-label-real">FRENAR</div>
     </div>
   </div>
   
   <!-- Botón Nitro -->
-  <div class="nitro-btn" id="nitro-btn">
-    <div class="icon">💨</div>
-    <div class="label">NITRO</div>
+  <div class="nitro-btn-real" id="nitro-btn">
+    <div class="nitro-icon">💨</div>
+    <div class="nitro-label">NITRO</div>
   </div>
 </div>
 
@@ -198,9 +206,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
-// ========== CONFIGURACIÓN ==========
+// ========== CONFIGURACIÓN - CARRETERA DE 3 CARRILES ==========
 const CONFIG={
-  roadWidth:8.5,        // ¡CARRETERA MÁS ANCHA! (antes 5.8)
+  roadWidth:9.0,        // Carretera ancha para 3 carriles
+  laneWidth:3.0,        // Ancho de cada carril
   segLen:2.6,
   maxSpeed:380,
   baseAccel:0.78,
@@ -212,7 +221,9 @@ const CONFIG={
   numCars:12,
   numObstacles:10,
   numCoins:30,
-  roadLimit:3.8        // Límite de la carretera (antes 2.8)
+  roadLeftLimit:-4.2,   // Límite izquierdo (carril 1)
+  roadRightLimit:4.2,   // Límite derecho (carril 3)
+  lanes:[-3.0, 0, 3.0]  // Posiciones de los 3 carriles
 };
 
 let scene,camera,renderer,clock,bikeGroup,bikeBody,wheels=[],frontLight;
@@ -224,7 +235,7 @@ let state={
   weather:'clear',timeOfDay:0.6,drift:0,invincible:0
 };
 let keys={left:false,right:false,up:false,down:false,nitro:false};
-let settings={useButtons:true,nightMode:false,quality:1};
+let settings={useButtons:true,nightMode:false};
 let exhaustParticles=[];
 let lastExhaust=0;
 
@@ -241,7 +252,6 @@ function initThree(){
   renderer=new THREE.WebGLRenderer({antialias:true});
   renderer.setSize(innerWidth,innerHeight);
   renderer.shadowMap.enabled=true;
-  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
   document.body.appendChild(renderer.domElement);
   
   ambLight=new THREE.AmbientLight(0x303060,0.6);
@@ -249,14 +259,9 @@ function initThree(){
   sunLight=new THREE.DirectionalLight(0xffcc88,1.6);
   sunLight.position.set(8,15,10);
   sunLight.castShadow=true;
-  sunLight.shadow.mapSize.set(1024,1024);
   scene.add(sunLight);
   
-  const fillLight=new THREE.PointLight(0x4488ff,0.4);
-  fillLight.position.set(-3,5,5);
-  scene.add(fillLight);
-  
-  buildRoad();
+  buildRoad3Lanes();
   buildBike();
   buildTraffic();
   buildObstacles();
@@ -265,31 +270,34 @@ function initThree(){
   buildWeather();
 }
 
-function buildRoad(){
-  // Carretera más ancha
-  const asphaltMat=new THREE.MeshStandardMaterial({color:0x1a1a1a,roughness:0.7,metalness:0.1});
+// CARRETERA DE 3 CARRILES
+function buildRoad3Lanes(){
+  const asphaltMat=new THREE.MeshStandardMaterial({color:0x1a1a1a,roughness:0.7});
   for(let i=-50;i<50;i++){
     const seg=new THREE.Mesh(new THREE.PlaneGeometry(CONFIG.roadWidth,CONFIG.segLen),asphaltMat);
     seg.rotation.x=-Math.PI/2;seg.position.set(0,-0.08,i*CONFIG.segLen);seg.receiveShadow=true;
     scene.add(seg);
   }
-  // Líneas de carril (más marcadas)
-  const dashMat=new THREE.MeshStandardMaterial({color:0xffcc44,emissive:0x442200});
-  for(let i=-50;i<50;i++){
-    const centerDash=new THREE.Mesh(new THREE.BoxGeometry(0.25,0.06,1.0),dashMat);
-    centerDash.position.set(0,-0.04,i*CONFIG.segLen);scene.add(centerDash);roadLines.push(centerDash);
-    // Líneas de borde más anchas
-    const leftLine=new THREE.Mesh(new THREE.BoxGeometry(0.15,0.06,CONFIG.segLen),new THREE.MeshStandardMaterial({color:0xffaa66}));
-    leftLine.position.set(-CONFIG.roadWidth/2+0.3,-0.04,i*CONFIG.segLen);scene.add(leftLine);
-    const rightLine=leftLine.clone();rightLine.position.x=CONFIG.roadWidth/2-0.3;scene.add(rightLine);
-  }
   
-  // Añadir arcenes
-  const curbMat=new THREE.MeshStandardMaterial({color:0x444444});
+  // Líneas divisorias de carriles (3 carriles = 2 líneas divisorias)
+  const lineMat=new THREE.MeshStandardMaterial({color:0xffcc44,emissive:0x442200});
   for(let i=-50;i<50;i++){
-    const leftCurb=new THREE.Mesh(new THREE.BoxGeometry(0.4,0.1,CONFIG.segLen),curbMat);
-    leftCurb.position.set(-CONFIG.roadWidth/2-0.2,-0.05,i*CONFIG.segLen);scene.add(leftCurb);
-    const rightCurb=leftCurb.clone();rightCurb.position.x=CONFIG.roadWidth/2+0.2;scene.add(rightCurb);
+    // Línea central (entre carril 2 y 3)
+    const centerLine=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.06,1.2),lineMat);
+    centerLine.position.set(0,-0.04,i*CONFIG.segLen);scene.add(centerLine);roadLines.push(centerLine);
+    
+    // Línea izquierda (entre carril 1 y 2)
+    const leftDivider=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.06,1.2),lineMat);
+    leftDivider.position.set(-3.0,-0.04,i*CONFIG.segLen);scene.add(leftDivider);roadLines.push(leftDivider);
+    
+    // Línea derecha (borde)
+    const rightDivider=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.06,1.2),lineMat);
+    rightDivider.position.set(3.0,-0.04,i*CONFIG.segLen);scene.add(rightDivider);roadLines.push(rightDivider);
+    
+    // Bordes blancos
+    const leftEdge=new THREE.Mesh(new THREE.BoxGeometry(0.15,0.06,CONFIG.segLen),new THREE.MeshStandardMaterial({color:0xffaa66}));
+    leftEdge.position.set(-CONFIG.roadWidth/2+0.25,-0.04,i*CONFIG.segLen);scene.add(leftEdge);
+    const rightEdge=leftEdge.clone();rightEdge.position.x=CONFIG.roadWidth/2-0.25;scene.add(rightEdge);
   }
 }
 
@@ -302,10 +310,10 @@ function buildBike(){
   const fairing=new THREE.Mesh(new THREE.BoxGeometry(0.65,0.28,0.95),new THREE.MeshStandardMaterial({color:0xdd3300,metalness:0.8}));
   fairing.position.set(0,0.44,0.58);fairing.castShadow=true;bikeGroup.add(fairing);
   
-  const seat=new THREE.Mesh(new THREE.BoxGeometry(0.55,0.12,0.78),new THREE.MeshStandardMaterial({color:0x111111,roughness:0.9}));
+  const seat=new THREE.Mesh(new THREE.BoxGeometry(0.55,0.12,0.78),new THREE.MeshStandardMaterial({color:0x111111}));
   seat.position.set(0,0.44,-0.42);bikeGroup.add(seat);
   
-  const wheelMat=new THREE.MeshStandardMaterial({color:0x111111,roughness:0.4,metalness:0.3});
+  const wheelMat=new THREE.MeshStandardMaterial({color:0x111111,roughness:0.4});
   const wheelGeo=new THREE.CylinderGeometry(0.36,0.36,0.52,24);
   [-0.52,0.52].forEach(x=>{
     const fw=new THREE.Mesh(wheelGeo,wheelMat);fw.rotation.z=Math.PI/2;fw.position.set(x,0.13,0.88);fw.castShadow=true;bikeGroup.add(fw);wheels.push(fw);
@@ -332,11 +340,12 @@ function buildTraffic(){
     [[-0.55,0.1,-0.68],[0.55,0.1,-0.68],[-0.55,0.1,0.68],[0.55,0.1,0.68]].forEach(p=>{
       const w=new THREE.Mesh(wheelGeom,wheelMat);w.position.set(p[0],p[1],p[2]);w.scale.set(0.8,0.5,0.8);g.add(w);
     });
-    // Carriles más amplios
-    const lane=(Math.floor(Math.random()*3)-1)*(CONFIG.roadWidth/3.5);
-    g.position.set(lane,0.22,-38-i*24);
+    // Asignar a uno de los 3 carriles
+    const laneIndex=Math.floor(Math.random()*3);
+    const laneX=CONFIG.lanes[laneIndex];
+    g.position.set(laneX,0.22,-38-i*24);
     scene.add(g);
-    cars.push({obj:g,speed:CONFIG.aiSpeed+Math.random()*75,lane});
+    cars.push({obj:g,speed:CONFIG.aiSpeed+Math.random()*75,lane:laneX});
   }
 }
 
@@ -345,10 +354,11 @@ function buildObstacles(){
     const g=new THREE.Group();
     const barrel=new THREE.Mesh(new THREE.CylinderGeometry(0.32,0.36,0.65,10),new THREE.MeshStandardMaterial({color:0xcc6600,roughness:0.6}));
     barrel.castShadow=true;g.add(barrel);
-    const lane=(Math.floor(Math.random()*3)-1)*(CONFIG.roadWidth/3.5);
-    g.position.set(lane,0.22,-55-i*40);
+    const laneIndex=Math.floor(Math.random()*3);
+    const laneX=CONFIG.lanes[laneIndex];
+    g.position.set(laneX,0.22,-55-i*40);
     scene.add(g);
-    obstacles.push({obj:g,lane,hit:false});
+    obstacles.push({obj:g,lane:laneX,hit:false});
   }
 }
 
@@ -357,8 +367,9 @@ function buildCoins(){
     const coinGroup=new THREE.Group();
     const coinBody=new THREE.Mesh(new THREE.CylinderGeometry(0.22,0.22,0.04,16),new THREE.MeshStandardMaterial({color:0xffcc00,metalness:0.85,emissive:0xff8800,emissiveIntensity:0.4}));
     coinBody.rotation.x=Math.PI/2;coinGroup.add(coinBody);
-    const lane=(Math.floor(Math.random()*3)-1)*(CONFIG.roadWidth/3.5)+(Math.random()-0.5)*1.2;
-    coinGroup.position.set(lane,0.28,-60-i*22);
+    const laneIndex=Math.floor(Math.random()*3);
+    const laneX=CONFIG.lanes[laneIndex]+(Math.random()-0.5)*0.8;
+    coinGroup.position.set(laneX,0.28,-60-i*22);
     coinGroup.userData={value:15};
     scene.add(coinGroup);
     coins.push(coinGroup);
@@ -382,7 +393,7 @@ function buildWeather(){
   scene.add(rain);
 }
 
-// ========== FÍSICA CON LÍMITES MÁS AMPLIOS ==========
+// ========== FÍSICA CON 3 CARRILES ==========
 function updatePhysics(dt){
   if(!state.running||state.paused)return;
   const useNitro=keys.nitro&&state.nitro>0.05;
@@ -401,23 +412,23 @@ function updatePhysics(dt){
   }
   if(!useNitro)state.nitro=Math.min(1,state.nitro+CONFIG.nitroRegen*dt*60);
   
-  // Dirección con límite de carretera ANCHO
+  // Dirección con límites de 3 carriles
   const turn=CONFIG.turnBase*(0.55+state.speed/CONFIG.maxSpeed*0.55);
   if(keys.left){state.bikeXVel-=turn*dt*60;state.drift=Math.max(-1,state.drift-dt*2);}
   else if(keys.right){state.bikeXVel+=turn*dt*60;state.drift=Math.min(1,state.drift+dt*2);}
   else state.drift*=0.94;
   state.bikeXVel*=0.91;
-  // LÍMITE MÁS ANCHO: -3.6 a 3.6 (antes -2.8 a 2.8)
-  state.bikeX=Math.max(-CONFIG.roadLimit,Math.min(CONFIG.roadLimit,state.bikeX+state.bikeXVel*dt*60));
+  // Límites estrictos de la carretera (no salirse)
+  state.bikeX=Math.max(CONFIG.roadLeftLimit,Math.min(CONFIG.roadRightLimit,state.bikeX+state.bikeXVel*dt*60));
   bikeGroup.position.x=state.bikeX;
   bikeGroup.rotation.z=-state.drift*0.22;
   bikeGroup.rotation.y=state.bikeXVel*0.08;
   wheels.forEach(w=>w.rotation.x+=state.speed*0.05*dt*60);
   
-  camera.position.x+=(state.bikeX*0.45-camera.position.x)*0.1;
-  camera.position.z=5.2-(state.speed/CONFIG.maxSpeed)*1.1;
-  camera.position.y=2.5+(state.speed/CONFIG.maxSpeed)*0.3+Math.abs(state.drift)*0.15;
-  camera.lookAt(state.bikeX*0.7,0.5+Math.abs(state.drift)*0.2,-7);
+  camera.position.x+=(state.bikeX*0.4-camera.position.x)*0.1;
+  camera.position.z=5.2-(state.speed/CONFIG.maxSpeed)*1.0;
+  camera.position.y=2.5+(state.speed/CONFIG.maxSpeed)*0.3;
+  camera.lookAt(state.bikeX*0.6,0.6,-7);
   
   const scroll=state.speed*0.24*dt;
   roadLines.forEach(l=>{l.position.z+=scroll;if(l.position.z>8)l.position.z-=240;});
@@ -427,7 +438,8 @@ function updatePhysics(dt){
     c.obj.position.z+=(state.speed-c.speed)*dt*0.85+scroll*0.65;
     if(c.obj.position.z>18){
       c.obj.position.z=-65-Math.random()*45;
-      c.lane=(Math.floor(Math.random()*3)-1)*(CONFIG.roadWidth/3.5);
+      const laneIndex=Math.floor(Math.random()*3);
+      c.lane=CONFIG.lanes[laneIndex];
       c.obj.position.x=c.lane;
     }
     if(state.invincible<=0){
@@ -450,7 +462,8 @@ function updatePhysics(dt){
     o.obj.position.z+=scroll;
     if(o.obj.position.z>18){
       o.obj.position.z=-80-Math.random()*60;
-      o.lane=(Math.floor(Math.random()*3)-1)*(CONFIG.roadWidth/3.5);
+      const laneIndex=Math.floor(Math.random()*3);
+      o.lane=CONFIG.lanes[laneIndex];
       o.obj.position.x=o.lane;
       o.hit=false;
     }
@@ -460,7 +473,7 @@ function updatePhysics(dt){
         state.coins=Math.max(0,state.coins-30);
         state.speed*=0.85;
         o.hit=true;
-        showFloatingText("-💰30",o.obj.position.x);
+        showFloatingText("-💰30");
         state.invincible=0.8;
       }
     }
@@ -472,14 +485,16 @@ function updatePhysics(dt){
     c.rotation.y+=0.12;c.rotation.x=Math.sin(Date.now()*0.008)*0.5;
     if(c.position.z>15){
       c.position.z=-100-Math.random()*70;
-      c.position.x=(Math.floor(Math.random()*3)-1)*(CONFIG.roadWidth/3.5)+(Math.random()-0.5)*1.2;
+      const laneIndex=Math.floor(Math.random()*3);
+      c.position.x=CONFIG.lanes[laneIndex]+(Math.random()-0.5)*0.8;
     }
     const dx=Math.abs(c.position.x-state.bikeX),dz=Math.abs(c.position.z+0.35);
     if(dx<0.85&&dz<0.95){
       state.coins+=c.userData.value;state.score+=80;state.combo=Math.min(8,state.combo+0.3);
-      showFloatingText("+💰"+c.userData.value,c.position.x);
+      showFloatingText("+💰"+c.userData.value);
       c.position.z=-120;
-      c.position.x=(Math.floor(Math.random()*3)-1)*(CONFIG.roadWidth/3.5);
+      const laneIndex=Math.floor(Math.random()*3);
+      c.position.x=CONFIG.lanes[laneIndex];
     }
   });
   
@@ -501,15 +516,16 @@ function updateLives(){
   }
 }
 
-function showFloatingText(text,xPos){
+function showFloatingText(text){
   const div=document.createElement('div');
   div.textContent=text;
   div.className='coin-pop';
-  div.style.left=Math.min(innerWidth-80,Math.max(20,innerWidth/2+(xPos*40)))+'px';
+  div.style.left='50%';
+  div.style.transform='translateX(-50%)';
   div.style.top=innerHeight/2+'px';
   div.style.color=text.includes('+')?'#ffcc00':'#ff6666';
   document.body.appendChild(div);
-  setTimeout(()=>div.remove(),900);
+  setTimeout(()=>div.remove(),800);
 }
 
 function updateWeather(dt){
@@ -527,7 +543,6 @@ function updateWeather(dt){
   if(state.timeOfDay>1)state.timeOfDay=0;
   const intensity=0.35+Math.sin(state.timeOfDay*Math.PI)*0.85;
   sunLight.intensity=intensity*(settings.nightMode?0.4:1);
-  ambLight.intensity=settings.nightMode?0.3:0.55;
 }
 
 function updateHUD(){
@@ -547,7 +562,7 @@ function spawnExhaust(){
   const useNitro=keys.nitro&&state.nitro>0.05;
   for(let i=0;i<(useNitro?2:1);i++){
     const p=new THREE.Mesh(new THREE.SphereGeometry(0.07,5),new THREE.MeshStandardMaterial({color:useNitro?0x00aaff:0xff7733,emissive:useNitro?0x0088ff:0xff4400}));
-    p.position.set(state.bikeX+(Math.random()-.5)*0.4,0.12, -1.15);
+    p.position.set(state.bikeX+(Math.random()-.5)*0.4,0.12,-1.15);
     scene.add(p);
     exhaustParticles.push({mesh:p,life:1});
   }
@@ -573,7 +588,7 @@ function animate(){
   renderer.render(scene,camera);
 }
 
-// ========== CONTROLES CON VOLANTE ==========
+// ========== CONTROLES ==========
 function initControls(){
   window.addEventListener('keydown',e=>{
     if(e.key==='ArrowLeft')keys.left=true;
@@ -591,7 +606,7 @@ function initControls(){
     if(e.key===' ')keys.nitro=false;
   });
   
-  // Controles táctiles con el volante
+  // Volante táctil
   const wheel=document.getElementById('steering-wheel');
   let wheelActive=false;
   const onWheelStart=(e)=>{e.preventDefault();wheelActive=true;};
@@ -599,8 +614,7 @@ function initControls(){
     if(!wheelActive||!settings.useButtons)return;
     const rect=wheel.getBoundingClientRect();
     const x=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
-    const width=rect.width;
-    const percent=x/width;
+    const percent=x/rect.width;
     if(percent<0.3){keys.left=true;keys.right=false;}
     else if(percent>0.7){keys.right=true;keys.left=false;}
     else{keys.left=false;keys.right=false;}
@@ -679,11 +693,6 @@ function setupMenus(){
   nightToggle.addEventListener('click',()=>{
     settings.nightMode=!settings.nightMode;
     nightToggle.classList.toggle('active',settings.nightMode);
-  });
-  const qualitySelect=document.getElementById('quality-select');
-  qualitySelect.addEventListener('change',(e)=>{
-    settings.quality=parseInt(e.target.value);
-    renderer.setPixelRatio(settings.quality===2?devicePixelRatio:settings.quality===1?1.5:1);
   });
 }
 
